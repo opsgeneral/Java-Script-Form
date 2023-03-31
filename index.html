@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form Validation</title>
+	<style>
+		label {
+			display: block;
+			margin-bottom: 5px;
+           
+            
+            font-size: 30px;
+            font-weight: bolder;
+		}
+
+		input[type="text"], input[type="email"], input[type="tel"] {
+			margin-bottom: 10px;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			font-size: 16px;
+		}
+
+		.error {
+			color: red;
+			font-size: 14px;
+			margin-bottom: 5px;
+		}
+
+        .main-container
+        {
+            width: 35%;
+            height:70vh;
+            border: 2px solid black;
+            text-align: center;
+            background-image: url(images.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 150px auto;
+            font-size: 20px;
+            padding-top: 50px;
+            background-color: lightgray;
+        }
+        body
+        {
+            background-image: url(mountains-best-for-desktop-background-wallpaper-preview.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .design
+        {
+          background-color: #252742;
+          color: white;
+            margin-top: -50px;
+            margin-bottom: 50px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            height: 50px;
+        }
+        
+      
+	</style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="design"> Ramzan Form</div>
+        
+	<form id="Shahab Form">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name">
+
+		<div id="nameError" class="error"></div>
+
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email">
+
+		<div id="emailError" class="error"></div>
+
+		<label for="phone">Phone:</label>
+		<input type="tel" id="phone" name="phone">
+
+		<div id="phoneError" class="error"></div>
+
+		<button type="submit">Submit</button>
+	</form>
+
+	<div id="display"></div>
+
+	<script>
+		var form = document.getElementById("Shahab Form");
+
+		form.addEventListener("submit", function(event){
+			event.preventDefault();
+			var name = document.getElementById("name").value;
+			var email = document.getElementById("email").value;
+			var phone = document.getElementById("phone").value;
+			var nameError = document.getElementById("nameError");
+			var emailError = document.getElementById("emailError");
+			var phoneError = document.getElementById("phoneError");
+			var display = document.getElementById("display");
+
+			if(name === '') {
+				nameError.innerHTML = "Name is required";
+			} else {
+				nameError.innerHTML = "";
+			}
+
+			if(email === '') {
+				emailError.innerHTML = "Email is required";
+			} else {
+				emailError.innerHTML = "";
+			}
+
+			if(phone === '') {
+				phoneError.innerHTML = "Phone is required";
+			} else if(phone.length != 10) {
+				phoneError.innerHTML = "Phone number should be of 10 digits";
+			} else {
+				phoneError.innerHTML = "";
+			}
+
+			if(nameError.innerHTML === "" && emailError.innerHTML === "" && phoneError.innerHTML === "") {
+				display.innerHTML = "<h2>Form Values:</h2><p>Name: " + name + "</p><p>Email: " + email + "</p><p>Phone: " + phone + "</p>";
+			} else {
+				display.innerHTML = "";
+			}
+		});
+	</script>
+
+</div>
+</body>
+</html>
